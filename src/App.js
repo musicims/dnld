@@ -119,19 +119,33 @@ const App = () => {
   
   
   
-    const handleDownloadExcel = () => {
-      const workbook = new ExcelJS.Workbook();
-      const worksheet = workbook.addWorksheet('Pre-Checklist');
-  
-      preChecklistData.forEach(row => {
-        worksheet.addRow(row);
+  const handleDownloadExcel = () => {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Pre-Checklist');
+
+    // Iterate over the data and find the maximum width for each column
+    const columnWidths = preChecklistData.reduce((widths, row) => {
+      row.forEach((cell, index) => {
+        const columnWidth = cell.toString().length;
+        if (!widths[index] || columnWidth > widths[index]) {
+          widths[index] = columnWidth;
+        }
       });
-  
-      workbook.xlsx.writeBuffer().then(buffer => {
-        const excelBlob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-        saveAs(excelBlob, 'pre_checklist.xlsx');
-      });
-    };
+      return widths;
+    }, []);
+
+    // Set the column widths in the Excel worksheet
+    worksheet.columns = columnWidths.map(width => ({ width }));
+
+    preChecklistData.forEach(row => {
+      worksheet.addRow(row);
+    });
+
+    workbook.xlsx.writeBuffer().then(buffer => {
+      const excelBlob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      saveAs(excelBlob, 'pre_checklist.xlsx');
+    });
+  };
 
   return (
     <div>
