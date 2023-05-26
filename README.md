@@ -74,3 +74,7 @@ const parsedData = parseAssistantResponse(assistantResponse);
 console.log(parsedData); // The parsed data array
 
 ```
+
+## To use a formatted document returned from GPT
+
+Use App Contract.js as an example. It will dynamically render the PDF and Excel files from the formatted response from GPT
