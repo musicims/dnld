@@ -125,7 +125,7 @@ const App = () => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Pre-Checklist');
 
-    // Iterate over the data and find the maximum width for each column
+    // Iterate over the data and dynamically find the maximum width for each column
     const columnWidths = preChecklistData.reduce((widths, row) => {
       row.forEach((cell, index) => {
         const columnWidth = cell.toString().length;
@@ -136,7 +136,7 @@ const App = () => {
       return widths;
     }, []);
 
-    // Set the column widths in the Excel worksheet
+    // Dynalically set the column widths in the Excel worksheet
     worksheet.columns = columnWidths.map(width => ({ width }));
 
     preChecklistData.forEach(row => {
