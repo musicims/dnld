@@ -5,6 +5,8 @@ import ExcelJS from 'exceljs';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
+
+//this data is just a placeholder for the data fetched from GPT, see readme
 const preChecklistData = [
   ["1. General Cleaning", "- The property is clean and tidy."],
   ["", "- All surfaces are dust free and wiped, including countertops, shelves, and furniture."],
