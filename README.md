@@ -10,7 +10,8 @@ Has two customizable buttons for each export/save to file. Is currently configur
 
 Example prompt to replace the data contained in the first const with a response from GPT API using 3.5 turbo
 
-```import openai
+```
+import openai
 
 openai.ChatCompletion.create(
   model="gpt-3.5-turbo",
@@ -19,11 +20,14 @@ openai.ChatCompletion.create(
         {"role": "user", "content": "Please provide a two-column formatted response similar to the preChecklistData."},
         {"role": "assistant", "content": "Sure! Here's a two-column formatted response:\n\n1. General Cleaning\n   - The property is clean and tidy.\n   - All surfaces are dust free and wiped, including countertops, shelves, and furniture.\n   - Windows and mirrors are clean.\n   - No personal belongings are present.\n2. Walls and Paint\n   - The walls are free of any marks, scuffs, or holes.\n   - Any minor damages are touched up with matching paint.\n   - If there are major damages, consult with the landlord or property manager.\n3. Floors and Carpets\n   - Inspect the floors for scratches, stains, or any damages.\n   - Vacuum or mop the floors accordingly.\n   - Professionally clean the carpets if necessary.\n4. Appliances and Fixtures\n   - Check that all appliances are in working order.\n   - Test the stove, refrigerator, dishwasher, microwave, and any other provided appliances.\n   - Ensure that all faucets, toilets, showers, and sinks are functioning properly.\n   - No missing or burnt out light bulbs\n\n...and so on."},
     ]
-)```
+)
+
+```
 
 The output from the assistant then needs to be parsed, cleaned, and formatted similar to this example
 
-```// Assume the assistant's response is stored in a variable called 'assistantResponse'
+```
+// Assume the assistant's response is stored in a variable called 'assistantResponse'
 
 const parseAssistantResponse = (assistantResponse) => {
   // Remove leading and trailing whitespace
@@ -67,4 +71,6 @@ const parseAssistantResponse = (assistantResponse) => {
 
 
 const parsedData = parseAssistantResponse(assistantResponse);
-console.log(parsedData); // The parsed data array```
+console.log(parsedData); // The parsed data array
+
+```
